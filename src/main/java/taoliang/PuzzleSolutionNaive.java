@@ -7,7 +7,6 @@ import java.math.BigInteger;
 
 
 /**
- * Created by tao on 20/02/15.
  * You have a range of consecutive numbers, from 1 to n (inclusive). e.g. [1, 2, 3, 4... n]. We would like to calculate a sum of a function across the entire range, where the function returns the product of the *preceding* C elements.
  * If there are less than C previous elements, just use the available numbers. i.e. if you are processing the fourth number in the range, but C is greater than 3, then you will calculate the product using only the 3 available preceding numbers. In this situation as you move further along in this range more preceding numbers become available.
  */
@@ -27,7 +26,7 @@ public class PuzzleSolutionNaive {
 
         BigInteger resultSums = BigInteger.ZERO;
 
-        // loop entire range from last to second number (first number =0)
+        // loop entire range from last to second number (first number product value is zero, skip)
         for (int currentPosition = n; currentPosition > 1; currentPosition--) {
 
             resultSums = resultSums.add(productOfProceeding(c, currentPosition));
@@ -58,7 +57,7 @@ public class PuzzleSolutionNaive {
 
         for (int proceedingElement = c; proceedingElement > 0; proceedingElement--) {
 
-            // ignore proceeding element
+            // ignore proceeding element greater than 1
             if ((position - proceedingElement) > 1) {
 
                 product = product.multiply(BigInteger.valueOf(position - proceedingElement));
